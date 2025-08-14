@@ -1,0 +1,123 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #ffffff;
+  color: #333;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  align-items: center;
+  background-color: #00aaff;
+  padding: 10px;
+  position: relative;
+}
+
+.logo img {
+  height: 50px;
+}
+
+.search-bar {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.search-bar input {
+  padding: 8px;
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+}
+
+nav {
+  display: flex;
+  gap: 15px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* HAMBURGER MENU */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background-color: #00aaff;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    padding: 10px;
+  }
+  nav.show {
+    display: flex;
+  }
+  .menu-toggle {
+    display: block;
+  }
+}
+
+/* MARQUEE */
+.marquee {
+  background-color: #e0f7ff;
+  padding: 5px;
+  color: #0077aa;
+}
+
+/* SLIDER */
+.slider {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.slides {
+  display: none;
+}
+
+.slides img {
+  width: 100%;
+}
+
+/* BERITA LAINNYA */
+.berita-lainnya {
+  padding: 20px;
+}
+
+.berita-lainnya h2 {
+  margin-bottom: 15px;
+  color: #0077aa;
+}
+
+.berita-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.berita-item img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+.berita-item p {
+  margin-top: 8px;
+}
+
+/* FOOTER */
+footer {
+  background-color: #00aaff;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
