@@ -9,7 +9,7 @@
   <body>
     <header class="topbar">
       <div class="brand">
-        <img src="logo/logo3.png" alt="Media Positif Logo" />
+        <img src="logo/logoMediaPositif.png" alt="Media Positif Logo" />
       </div>
       <div class="search">
         <input type="search" placeholder="Cari berita..." />
@@ -19,8 +19,9 @@
 
     <div class="menu-toggle" id="menu-toggle">☰ Menu</div>
     <nav id="menu">
-      <a href="#">Home</a><a href="#">Berita</a><a href="#">Kesehatan</a>
-      <a href="#">Kebahagiaan</a><a href="#">Kesuksesan</a>
+      <a href="index.html">Home</a><a href="#">Parenting</a
+      ><a href="#">Kesehatan</a> <a href="#">Kebahagiaan</a
+      ><a href="#">Kesuksesan</a><a href="#">Tentang Kami</a>
     </nav>
 
     <main class="wrap">
@@ -28,12 +29,12 @@
         <div class="slider" id="slider">
           <div class="slides" id="slides">
             <div class="slide" data-index="0">
-              <img src="img/barber.jpg" alt="Headline 1" />
+              <img src="img/HL1.jpg" alt="Headline 1" />
               <div class="caption">
                 <div class="kategory">HEADLINE</div>
-                <h2>
-                  Ini Judul Berita Utama Pertama yang Menginspirasi Pembaca
-                </h2>
+                <a href="detailberita.html"
+                  ><h2>Pelajaran Hidup dari Jackie Bezos</h2></a
+                >
               </div>
             </div>
             <div class="slide" data-index="1">
@@ -53,6 +54,10 @@
               </div>
             </div>
           </div>
+
+          <!-- 🔘 Tombol navigasi kiri-kanan -->
+          <button class="nav-btn left" id="prevBtn">❮</button>
+          <button class="nav-btn right" id="nextBtn">❯</button>
         </div>
 
         <div class="news-slider-container">
@@ -120,30 +125,89 @@
           </p>
           <a href="daftar.html" class="btn-daftar">Daftar Sekarang</a>
         </div>
+        <div
+          style="
+            max-width: 500px;
+            margin: 15px auto;
+            background: #f9f9f9;
+            padding: 10px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+          "
+        >
+          <img src="img/donasi.png" />
+        </div>
       </aside>
     </main>
 
     <script>
-      // Slider headline
-      const slidesEl = document.getElementById("slides");
-      const slides = document.querySelectorAll(".slide");
-      let idx = 0;
-      const total = slides.length;
-      function goTo(i) {
-        idx = (i + total) % total;
-        slidesEl.style.transform = `translateX(-${idx * 100}%)`;
-      }
-      let auto = setInterval(() => goTo(idx + 1), 4000);
-      const slider = document.getElementById("slider");
-      slider.addEventListener("mouseenter", () => clearInterval(auto));
-      slider.addEventListener(
-        "mouseleave",
-        () => (auto = setInterval(() => goTo(idx + 1), 4000))
-      );
+      document.addEventListener("DOMContentLoaded", function () {
+        // =======================
+        // 1. Toggle Menu Mobile
+        // =======================
+        const menuToggle = document.getElementById("menuToggle");
+        const mobileMenu = document.getElementById("mobileMenu");
 
-      // Toggle menu
-      document.getElementById("menu-toggle").addEventListener("click", () => {
-        document.getElementById("menu").classList.toggle("active");
+        if (menuToggle && mobileMenu) {
+          menuToggle.addEventListener("click", () => {
+            mobileMenu.classList.toggle("show");
+          });
+        }
+
+        // =======================
+        // 2. Slider Berita
+        // =======================
+        const slides = document.querySelectorAll(".slide");
+        const slidesContainer = document.getElementById("slides");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+
+        let currentIndex = 0;
+        let interval;
+
+        function showSlide(index) {
+          if (index < 0) index = slides.length - 1;
+          if (index >= slides.length) index = 0;
+
+          slidesContainer.style.transform = `translateX(-${index * 100}%)`;
+          currentIndex = index;
+        }
+
+        function nextSlide() {
+          showSlide(currentIndex + 1);
+        }
+
+        function prevSlide() {
+          showSlide(currentIndex - 1);
+        }
+
+        function startAutoPlay() {
+          interval = setInterval(nextSlide, 4000); // 4 detik sekali
+        }
+
+        function resetAutoPlay() {
+          clearInterval(interval);
+          startAutoPlay();
+        }
+
+        // event tombol navigasi
+        if (nextBtn && prevBtn) {
+          nextBtn.addEventListener("click", () => {
+            nextSlide();
+            resetAutoPlay();
+          });
+
+          prevBtn.addEventListener("click", () => {
+            prevSlide();
+            resetAutoPlay();
+          });
+        }
+
+        // mulai autoplay
+        if (slides.length > 0) {
+          startAutoPlay();
+        }
       });
 
       // Data berita lainnya
