@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Media Positif — Beranda</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <img src="logo/logoMediaPositif.png" alt="Media Positif Logo" />
+      </div>
+      <div class="search">
+        <input type="search" placeholder="Cari berita..." />
+        <button>Search</button>
+      </div>
+    </header>
+
+    <div class="menu-toggle" id="menu-toggle">☰ Menu</div>
+    <nav id="menu">
+      <a href="index.html">Home</a><a href="#">Parenting</a><a href="#">Kesehatan</a>
+      <a href="#">Kebahagiaan</a><a href="#">Kesuksesan</a
+      ><a href="#">Tentang Kami</a>
+    </nav>
+    <div class="wrap">
+      <!-- KONTEN BERITA -->
+      <main class="detail-card">
+        <img src="img/HL1.jpg" alt="Gambar Berita" class="detail-img" />
+        <div class="detail-content">
+          <div class="detail-category">HEADLINE</div>
+          <h1 class="detail-title">Pelajaran Hidup dari Jackie Bezos</h1>
+          <p class="detail-meta">Ditulis oleh Redaksi | 16 Agustus 2025</p>
+          <div class="detail-body">
+            <div class="detail-body">
+              
+                Jackie Bezos, ibu dari pendiri Amazon Jeff Bezos, dikenal bukan
+                hanya karena sosok anaknya yang sukses, tetapi juga karena
+                perjalanan hidup serta nilai-nilai yang ia tanamkan. Menurut
+                laporan
+                <a
+                  href="https://timesofindia.indiatimes.com/life-style/parenting/moments/life-lessons-from-jackie-bezos-every-parent-can-learn/articleshow/123315395.cms"
+                  target="_blank"
+                  style="color: grey"
+                  color="grey"
+                  ;
+                >
+                  Times of India (15 Agustus 2025)</a
+                >, ada banyak pelajaran yang bisa dipetik dari kehidupannya.
+              </p>
+
+              <p>
+                Sejak remaja, Jackie telah menghadapi tantangan besar. Ia hamil
+                pada usia 17 tahun, namun tidak menyerah pada keadaan. Dengan
+                tekad yang kuat, ia tetap menyelesaikan pendidikan sekolah
+                menengah, bahkan melanjutkan ke perguruan tinggi. Kisah ini
+                menunjukkan bahwa kondisi sulit tidak selalu menjadi penghalang,
+                tetapi bisa menjadi pendorong untuk lebih kuat.
+              </p>
+
+              <p>
+                Di usia 40-an, Jackie kembali ke bangku kuliah untuk meraih
+                gelar sarjana. Tindakannya ini menjadi bukti nyata bahwa memberi
+                contoh lebih penting daripada sekadar memberi nasihat. Dengan
+                cara itu, ia menanamkan nilai pendidikan seumur hidup kepada
+                anak-anaknya.
+              </p>
+
+              <p>
+                Sebagai ibu tunggal, Jackie juga memperlihatkan arti dukungan
+                tanpa syarat. Ia bekerja keras untuk keluarganya sambil tetap
+                mendukung mimpi-mimpi Jeff. Bahkan ketika Amazon hanya terlihat
+                sebagai “ide gila” di awal, ia tetap percaya dan mendukung penuh
+                langkah putranya.
+              </p>
+
+              <p>
+                Tidak berhenti di sana, Jackie bersama keluarganya mendirikan
+                <em>Bezos Family Foundation</em>, sebuah yayasan yang mendukung
+                perkembangan otak anak dan kepemimpinan generasi muda. Dari sini
+                kita belajar bahwa memberi tidak selalu harus menunggu sukses
+                besar; setiap orang bisa memulai dengan langkah kecil yang
+                konsisten.
+              </p>
+
+              <p>
+                Hal lain yang menjadi ciri Jackie adalah dorongannya pada rasa
+                ingin tahu dan kreativitas. Ia percaya bahwa pikiran yang
+                terbuka adalah kunci pembelajaran sepanjang hayat. Lingkungan
+                keluarga yang hangat, penuh cinta dan dukungan, juga menjadi
+                fondasi yang ia bangun untuk kebahagiaan sejati anak-anaknya.
+              </p>
+
+              <p>
+                Jackie mengajarkan bahwa kekuatan tidak selalu hadir dengan
+                suara keras. Kadang, ketulusan dan tindakan lembut jauh lebih
+                membekas dan membawa perubahan nyata. Dari kehidupannya, orang
+                tua dapat belajar bahwa cinta, keberanian, dan kesabaran adalah
+                warisan terbaik bagi generasi berikutnya.
+              </p>
+
+              <hr />
+
+              <em font-size:10px
+                >"Informasi dalam artikel ini diambil dari pemberitaan
+                <b>Times of India</b> untuk tujuan berbagi wawasan positif".</em
+              >
+              <hr />
+            </div>
+          </div>
+        </div>
+      </main>
+      <!-- SIDEBAR -->
+      <aside>
+        <div class="side-list">
+          <div class="side-head">Berita Lainnya</div>
+          <div class="news-item">
+            <img src="img/1.jpg" alt="" />
+            <div class="meta">
+              <div class="cat">KESEHATAN</div>
+              <div class="title">
+                Tips Sehat: Cara Mudah Memulai Gaya Hidup Positif
+              </div>
+            </div>
+          </div>
+          <div class="news-item">
+            <img src="img/barber.jpg" alt="" />
+            <div class="meta">
+              <div class="cat">SUKSES</div>
+              <div class="title">Kisah Inspiratif: Dari Rumah ke Sukses</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // =======================
+        // 1. Toggle Menu Mobile
+        // =======================
+        const menuToggle = document.getElementById("menuToggle");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        if (menuToggle && mobileMenu) {
+          menuToggle.addEventListener("click", () => {
+            mobileMenu.classList.toggle("show");
+          });
+        }
+
+        // =======================
+        // 2. Slider Berita
+        // =======================
+        const slides = document.querySelectorAll(".slide");
+        const slidesContainer = document.getElementById("slides");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+
+        let currentIndex = 0;
+        let interval;
+
+        function showSlide(index) {
+          if (index < 0) index = slides.length - 1;
+          if (index >= slides.length) index = 0;
+
+          slidesContainer.style.transform = `translateX(-${index * 100}%)`;
+          currentIndex = index;
+        }
+
+        function nextSlide() {
+          showSlide(currentIndex + 1);
+        }
+
+        function prevSlide() {
+          showSlide(currentIndex - 1);
+        }
+
+        function startAutoPlay() {
+          interval = setInterval(nextSlide, 4000); // 4 detik sekali
+        }
+
+        function resetAutoPlay() {
+          clearInterval(interval);
+          startAutoPlay();
+        }
+
+        // event tombol navigasi
+        if (nextBtn && prevBtn) {
+          nextBtn.addEventListener("click", () => {
+            nextSlide();
+            resetAutoPlay();
+          });
+
+          prevBtn.addEventListener("click", () => {
+            prevSlide();
+            resetAutoPlay();
+          });
+        }
+
+        // mulai autoplay
+        if (slides.length > 0) {
+          startAutoPlay();
+        }
+      });
+
+      // Data berita lainnya
+      const newsData = [
+        {
+          img: "img/smile1.jpg",
+          title: "Ayah Bunda, Sudah Pastikan Anak Sehat Selama Puasa?",
+        },
+        {
+          img: "img/1.jpg",
+          title: "Emang Boleh Naik Kereta Seberkesan Ini? Yuk Ceritakan",
+        },
+        {
+          img: "img/barber.jpg",
+          title: "Pantang Abaikan Pendidikan Nonformal",
+        },
+        {
+          img: "https://source.unsplash.com/400x300/?nature",
+          title: "Indahnya Alam yang Membawa Kedamaian",
+        },
+        {
+          img: "https://source.unsplash.com/400x300/?technology",
+          title: "Teknologi untuk Kehidupan yang Lebih Baik",
+        },
+        {
+          img: "https://source.unsplash.com/400x300/?education",
+          title: "Pentingnya Pendidikan Karakter Sejak Dini",
+        },
+      ];
+      let newsIndex = 0;
+      const newsGrid = document.getElementById("newsGrid");
+
+      function renderNews() {
+        newsGrid.innerHTML = "";
+        for (let i = 0; i < 3; i++) {
+          const item = newsData[(newsIndex + i) % newsData.length];
+          newsGrid.innerHTML += `
+          <div class="news-card">
+            <img src="${item.img}" alt="Berita" />
+            <h4>${item.title}</h4>
+          </div>
+        `;
+        }
+      }
+
+      document.getElementById("prevNews").addEventListener("click", () => {
+        newsIndex = (newsIndex - 3 + newsData.length) % newsData.length;
+        renderNews();
+      });
+      document.getElementById("nextNews").addEventListener("click", () => {
+        newsIndex = (newsIndex + 3) % newsData.length;
+        renderNews();
+      });
+
+      renderNews();
+
+      // Data opini positif
+      const opiniData = [
+        {
+          img: "img/opini1.jpg",
+          text: "Berbuat baik itu menular. Mulailah dari hal kecil setiap hari.",
+          author: "Ayu W.",
+        },
+        {
+          img: "https://source.unsplash.com/100x100/?person2",
+          text: "Kebahagiaan adalah ketika kita bersyukur atas apa yang kita miliki.",
+          author: "Rizky A.",
+        },
+        {
+          img: "https://source.unsplash.com/100x100/?person3",
+          text: "Setiap tantangan adalah kesempatan untuk tumbuh dan belajar.",
+          author: "Nina S.",
+        },
+      ];
+      const opiniGrid = document.getElementById("opiniGrid");
+      opiniData.forEach((op) => {
+        opiniGrid.innerHTML += `
+        <div class="opini-card">
+          <img src="${op.img}" alt="Foto" />
+          <div>
+            <div class="text">"${op.text}"</div>
+            <div class="author">— ${op.author}</div>
+          </div>
+        </div>
+      `;
+      });
+    </script>
+  </body>
+</html>
