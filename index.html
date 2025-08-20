@@ -1,299 +1,217 @@
 <!DOCTYPE html>
 <html lang="id">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Media Positif — Beranda</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Media Positif</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+    <!-- ====== TOPBAR ====== -->
     <header class="topbar">
       <div class="brand">
-        <img src="logo/logoMediaPositif.png" alt="Media Positif Logo" />
+        <img src="logo/logoMediaPositif.png" alt="Media Positif" />
+      </div>
+      <div class="brand">
+        <img src="img/RI.jpg" alt="Media Positif" />
       </div>
       <div class="search">
-        <input type="search" placeholder="Cari berita..." />
-        <button>Search</button>
+        <input type="text" placeholder="Cari berita..." />
+        <button>Cari</button>
       </div>
     </header>
 
-    <div class="menu-toggle" id="menu-toggle">☰ Menu</div>
+    <!-- ====== MENU ====== -->
+    <div class="menu-toggle">☰ Menu</div>
     <nav id="menu">
-      <a href="index.html">Home</a><a href="#">Parenting</a
-      ><a href="#">Kesehatan</a> <a href="#">Kebahagiaan</a
-      ><a href="#">Kesuksesan</a><a href="#">Tentang Kami</a>
+      <a href="#">Login | Register</a>
+      <a href="#">Keluarga</a>
+      <a href="#">Kesehatan</a>
+      <a href="#">Bisnis</a>
+      <a href="#">Kemitraan</a>
+      <a href="#">Tentang Kami</a>
     </nav>
 
+    <!-- ====== MAIN CONTENT ====== -->
     <main class="wrap">
-      <section class="headline-card">
-        <div class="slider" id="slider">
-          <div class="slides" id="slides">
-            <div class="slide" data-index="0">
-              <img src="img/HL1.jpg" alt="Headline 1" />
+      <!-- LEFT COLUMN -->
+      <section class="left-column">
+        <!-- SLIDER -->
+        <div class="slider">
+          <div class="slides">
+            <div class="slide">
+              <img src="img/JB.jpg" alt="Berita 1" />
               <div class="caption">
-                <div class="kategory">HEADLINE</div>
+                <span class="kategory">KELUARGA</span>
                 <a href="detailberita.html"
                   ><h2>Pelajaran Hidup dari Jackie Bezos</h2></a
                 >
               </div>
             </div>
-            <div class="slide" data-index="1">
-              <img src="img/1.jpg" alt="Headline 2" />
+            <div class="slide">
+              <img src="img/sederhana.jpg" alt="Berita 2" />
               <div class="caption">
-                <div class="kategory">KESEHATAN</div>
-                <h2>Tips Sehat: Cara Mudah Memulai Gaya Hidup Positif</h2>
+                <span class="kategory">KESEHATAN</span>
+                <a href="detailberita2.html"
+                  ><h2>
+                    Hidup Sederhana Terbukti Membuat Orang Lebih Bahagia
+                  </h2></a
+                >
               </div>
             </div>
-            <div class="slide" data-index="2">
-              <img src="img/barber.jpg" alt="Headline 3" />
+            <div class="slide">
+              <img src="img/kemitraan.jpg" alt="Berita 2" />
               <div class="caption">
-                <div class="kategory">SUKSES</div>
-                <h2>
-                  Kisah Inspiratif: Dari Rumah ke Sukses — Langkah demi Langkah
-                </h2>
+                <span class="kategory">KEMITRAAN</span>
+                <h2>Kolaborasi Jadi Kunci Pembangunan</h2>
               </div>
             </div>
           </div>
-
-          <!-- 🔘 Tombol navigasi kiri-kanan -->
-          <button class="nav-btn left" id="prevBtn">❮</button>
-          <button class="nav-btn right" id="nextBtn">❯</button>
+          <!-- Dots navigasi -->
+          <div class="dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
         </div>
 
-        <div class="news-slider-container">
-          <button class="nav-btn left" id="prevNews">‹</button>
-          <button class="nav-btn right" id="nextNews">›</button>
-          <h3 class="section-title">Berita Lainnya</h3>
-          <div class="news-grid" id="newsGrid"></div>
-        </div>
+        <!-- 3 KOLUMN BERITA -->
 
-        <!-- Suara Positif -->
-        <div class="opini-container">
-          <h3 class="section-title">Suara Positif</h3>
-          <div class="opini-grid" id="opiniGrid"></div>
+        <div class="news-columns-wrapper">
+          <button class="news-nav left">&#10094;</button>
+          <div class="news-columns">
+            <div class="news-card">
+              <img src="img/ekonomi.jpg" alt="Gambar Berita" class="kotak" />
+              <h3>Tren Baru yang Dorong Kemajuan Indonesia</h3>
+            </div>
+            <div class="news-card">
+              <img src="img/berita2.jpg" alt="Gambar Berita" class="kotak" />
+              <h3>
+                Generasi Muda Indonesia Semakin Aktif dalam Inovasi Teknologi
+                Hijau
+              </h3>
+            </div>
+            <div class="news-card">
+              <h3>Judul Berita</h3>
+              <p>Ringkasan singkat berita...</p>
+            </div>
+            <div class="news-card">
+              <h3>Judul Berita Kolom 3</h3>
+              <p>Ringkasan singkat berita...</p>
+            </div>
+          </div>
+          <button class="news-nav right">&#10095;</button>
         </div>
       </section>
 
-      <aside>
-        <div class="side-list">
-          <div class="side-head">TRENDING</div>
-          <div class="news-item">
-            <img src="https://source.unsplash.com/160x120/?parenting" alt="" />
-            <div class="meta">
-              <div class="cat">KEHIDUPAN</div>
-              <div class="title">
-                Cara Menjaga Keseimbangan Hidup di Tengah Kesibukan
-              </div>
-            </div>
-          </div>
-          <div class="news-item">
-            <img src="img/smile1.jpg" alt="" />
-            <div class="meta">
-              <div class="cat">KESEHATAN</div>
-              <div class="title">
-                Latihan Sederhana untuk Menjaga Kesehatan Mental
-              </div>
-            </div>
-          </div>
-          <div class="news-item">
-            <img src="https://source.unsplash.com/160x120/?startup" alt="" />
-            <div class="meta">
-              <div class="cat">WIRAUSAHA</div>
-              <div class="title">
-                Langkah Awal Memulai Bisnis Rumahan yang Berkelanjutan
-              </div>
-            </div>
-          </div>
-          <div class="news-item">
-            <img src="https://source.unsplash.com/160x120/?happy" alt="" />
-            <div class="meta">
-              <div class="cat">KELUARGA</div>
-              <div class="title">
-                Kegiatan Sederhana untuk Meningkatkan Kebahagiaan Keluarga
-              </div>
+      <!-- RIGHT COLUMN -->
+      <aside class="right-column">
+        <!-- TRENDING -->
+        <div class="side-head">TRENDING</div>
+        <div class="news-item">
+          <img src="img/keseimbangan.jpg" alt="" />
+          <div class="meta">
+            <div class="cat">KEHIDUPAN</div>
+            <div class="title">
+              Cara Menjaga Keseimbangan Hidup di Tengah Kesibukan
             </div>
           </div>
         </div>
+        <div class="news-item">
+          <img src="img/smile1.jpg" alt="" />
+          <div class="meta">
+            <div class="cat">KESEHATAN</div>
+            <div class="title">
+              Latihan Sederhana untuk Menjaga Kesehatan Mental
+            </div>
+          </div>
+        </div>
+        <div class="news-item">
+          <img src="img/bisnisrumahan.jpg" alt="" />
+          <div class="meta">
+            <div class="cat">WIRAUSAHA</div>
+            <div class="title">
+              Langkah Awal Memulai Bisnis Rumahan yang Berkelanjutan
+            </div>
+          </div>
+        </div>
+        <div class="news-item">
+          <img src="img/keluarga.jpg" alt="" />
+          <div class="meta">
+            <div class="cat">KELUARGA</div>
+            <div class="title">
+              Kegiatan Sederhana untuk Meningkatkan Kebahagiaan Keluarga
+            </div>
+          </div>
+        </div>
+        <!-- IKLAN -->
+        <div class="ads">
+          <div class="ad-box">SPACE IKLAN</div>
+        </div>
 
-        <!-- Kotak Iklan -->
-        <div class="ad-box">Space Iklan</div>
+        <!-- MEMBER INVITE -->
         <div class="member-invite">
           <h3>Jadilah Bagian dari Kami!</h3>
           <p>
             Bergabunglah menjadi member untuk mendapatkan berita positif, tips
             inspiratif, dan komunitas yang mendukung.
           </p>
-          <a href="daftar.html" class="btn-daftar">Daftar Sekarang</a>
+          <a href="#" class="btn-daftar">Daftar Sekarang</a>
         </div>
+
+        <!-- Kotak Support Media Positif -->
         <div
-          style="
-            max-width: 500px;
-            margin: 15px auto;
-            background: #f9f9f9;
-            padding: 10px;
-            text-align: center;
-            border-radius: 12px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-          "
+          class="support-box"
+          role="complementary"
+          aria-label="Kotak dukungan media positif"
         >
-          <img src="img/donasi.png" />
+          <p>
+            “Mari dukung <br /><span style="color: rgb(14, 155, 211)"
+              ><b>Media Positif</b></span
+            >
+            agar terus menyebarkan kabar baik.”
+          </p>
+          <a
+            href="#support"
+            class="btn-support"
+            aria-label="Buka halaman dukungan"
+            >Support</a
+          >
         </div>
       </aside>
     </main>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // =======================
-        // 1. Toggle Menu Mobile
-        // =======================
-        const menuToggle = document.getElementById("menuToggle");
-        const mobileMenu = document.getElementById("mobileMenu");
-
-        if (menuToggle && mobileMenu) {
-          menuToggle.addEventListener("click", () => {
-            mobileMenu.classList.toggle("show");
-          });
-        }
-
-        // =======================
-        // 2. Slider Berita
-        // =======================
-        const slides = document.querySelectorAll(".slide");
-        const slidesContainer = document.getElementById("slides");
-        const prevBtn = document.getElementById("prevBtn");
-        const nextBtn = document.getElementById("nextBtn");
-
-        let currentIndex = 0;
-        let interval;
-
-        function showSlide(index) {
-          if (index < 0) index = slides.length - 1;
-          if (index >= slides.length) index = 0;
-
-          slidesContainer.style.transform = `translateX(-${index * 100}%)`;
-          currentIndex = index;
-        }
-
-        function nextSlide() {
-          showSlide(currentIndex + 1);
-        }
-
-        function prevSlide() {
-          showSlide(currentIndex - 1);
-        }
-
-        function startAutoPlay() {
-          interval = setInterval(nextSlide, 4000); // 4 detik sekali
-        }
-
-        function resetAutoPlay() {
-          clearInterval(interval);
-          startAutoPlay();
-        }
-
-        // event tombol navigasi
-        if (nextBtn && prevBtn) {
-          nextBtn.addEventListener("click", () => {
-            nextSlide();
-            resetAutoPlay();
-          });
-
-          prevBtn.addEventListener("click", () => {
-            prevSlide();
-            resetAutoPlay();
-          });
-        }
-
-        // mulai autoplay
-        if (slides.length > 0) {
-          startAutoPlay();
-        }
-      });
-
-      // Data berita lainnya
-      const newsData = [
-        {
-          img: "img/smile1.jpg",
-          title: "Ayah Bunda, Sudah Pastikan Anak Sehat Selama Puasa?",
-        },
-        {
-          img: "img/1.jpg",
-          title: "Emang Boleh Naik Kereta Seberkesan Ini? Yuk Ceritakan",
-        },
-        {
-          img: "img/barber.jpg",
-          title: "Pantang Abaikan Pendidikan Nonformal",
-        },
-        {
-          img: "https://source.unsplash.com/400x300/?nature",
-          title: "Indahnya Alam yang Membawa Kedamaian",
-        },
-        {
-          img: "https://source.unsplash.com/400x300/?technology",
-          title: "Teknologi untuk Kehidupan yang Lebih Baik",
-        },
-        {
-          img: "https://source.unsplash.com/400x300/?education",
-          title: "Pentingnya Pendidikan Karakter Sejak Dini",
-        },
-      ];
-      let newsIndex = 0;
-      const newsGrid = document.getElementById("newsGrid");
-
-      function renderNews() {
-        newsGrid.innerHTML = "";
-        for (let i = 0; i < 3; i++) {
-          const item = newsData[(newsIndex + i) % newsData.length];
-          newsGrid.innerHTML += `
-          <div class="news-card">
-            <img src="${item.img}" alt="Berita" />
-            <h4>${item.title}</h4>
-          </div>
-        `;
-        }
-      }
-
-      document.getElementById("prevNews").addEventListener("click", () => {
-        newsIndex = (newsIndex - 3 + newsData.length) % newsData.length;
-        renderNews();
-      });
-      document.getElementById("nextNews").addEventListener("click", () => {
-        newsIndex = (newsIndex + 3) % newsData.length;
-        renderNews();
-      });
-
-      renderNews();
-
-      // Data opini positif
-      const opiniData = [
-        {
-          img: "img/opini1.jpg",
-          text: "Berbuat baik itu menular. Mulailah dari hal kecil setiap hari.",
-          author: "Ayu W.",
-        },
-        {
-          img: "https://source.unsplash.com/100x100/?person2",
-          text: "Kebahagiaan adalah ketika kita bersyukur atas apa yang kita miliki.",
-          author: "Rizky A.",
-        },
-        {
-          img: "https://source.unsplash.com/100x100/?person3",
-          text: "Setiap tantangan adalah kesempatan untuk tumbuh dan belajar.",
-          author: "Nina S.",
-        },
-      ];
-      const opiniGrid = document.getElementById("opiniGrid");
-      opiniData.forEach((op) => {
-        opiniGrid.innerHTML += `
-        <div class="opini-card">
-          <img src="${op.img}" alt="Foto" />
-          <div>
-            <div class="text">"${op.text}"</div>
-            <div class="author">— ${op.author}</div>
-          </div>
+    <!-- Footer Website -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-about">
+          <h3>Media Positif</h3>
+          <p>
+            Menyebarkan kabar baik, inspirasi dan energi positif setiap hari.
+          </p>
         </div>
-      `;
-      });
-    </script>
+
+        <div class="footer-links">
+          <h4>Tautan</h4>
+          <ul>
+            <li><a href="#">Beranda</a></li>
+            <li><a href="#">Tentang Kami</a></li>
+            <li><a href="#">Artikel</a></li>
+            <li><a href="#">Kontak</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-social">
+          <h4>Ikuti Kami</h4>
+          <a href="#">Facebook</a> | <a href="#">Instagram</a> |
+          <a href="#">Twitter</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Media Positif. Semua hak cipta dilindungi.</p>
+      </div>
+    </footer>
+
+    <script src="js/script2.js"></script>
   </body>
 </html>
