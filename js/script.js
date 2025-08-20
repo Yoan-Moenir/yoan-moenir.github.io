@@ -1,68 +1,124 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // =======================
-  // 1. Toggle Menu Mobile
-  // =======================
-  const menuToggle = document.getElementById("menuToggle");
-  const mobileMenu = document.getElementById("mobileMenu");
+/* ==========================
+   SCRIPT.JS
+   Semua interaksi halaman
+   ========================== */
 
-  if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener("click", () => {
-      mobileMenu.classList.toggle("show");
+/* ==========================
+   1. Toggle Menu Mobile
+   ========================== */
+const menuToggle = document.getElementById("menu-toggle"); // tombol ☰
+const mobileMenu = document.getElementById("menu"); // navigasi utama
+
+if (menuToggle && mobileMenu) {
+  menuToggle.addEventListener("click", function () {
+    mobileMenu.classList.toggle("active");
+    // saat tombol diklik, tambahkan/hilangkan class "active"
+    // pastikan di CSS ada aturan .active { display:block; } untuk menu mobile
+  });
+}
+
+/* ==========================
+   2. Slider Headline Otomatis
+   ========================== */
+
+const slides = document.querySelectorAll(".slide");
+const slidesContainer = document.querySelector(".slides"); // ambil container slides
+const dots = document.querySelectorAll(".dot");
+let currentSlide = 0;
+let slideInterval = null;
+
+// Fungsi tampilkan slide sesuai index (looping biar balik lagi ke awal/akhir)
+function showSlide(index) {
+  if (index >= slides.length) {
+    index = 0; // kembali ke slide pertama
+  } else if (index < 0) {
+    index = slides.length - 1; // kalau mundur dari slide pertama, lompat ke terakhir
+  }
+
+  slides.forEach((slide, i) => {
+    slide.classList.toggle("active", i === index);
+  });
+
+  if (dots.length > 0) {
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === index);
     });
   }
 
-  // =======================
-  // 2. Slider Berita
-  // =======================
-  const slides = document.querySelectorAll(".slide");
-  const slidesContainer = document.getElementById("slides");
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
+  currentSlide = index;
+}
+// Fungsi pindah ke slide berikutnya
+function nextSlide() {
+  showSlide(currentSlide + 1);
+}
 
-  let currentIndex = 0;
-  let interval;
+// Fungsi pindah ke slide sebelumnya
+function prevSlide() {
+  showSlide(currentSlide - 1);
+}
 
-  function showSlide(index) {
-    if (index < 0) index = slides.length - 1;
-    if (index >= slides.length) index = 0;
+// Jalankan autoplay
+function startAutoSlide() {
+  stopAutoSlide();
+  slideInterval = setInterval(nextSlide, 4000);
+}
 
-    slidesContainer.style.transform = `translateX(-${index * 100}%)`;
-    currentIndex = index;
+// Hentikan autoplay
+function stopAutoSlide() {
+  if (slideInterval) {
+    clearInterval(slideInterval);
+    slideInterval = null;
   }
+}
 
-  function nextSlide() {
-    showSlide(currentIndex + 1);
-  }
+// Tombol navigasi slider (jika ada)
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
 
-  function prevSlide() {
-    showSlide(currentIndex - 1);
-  }
+if (prevBtn) {
+  prevBtn.addEventListener("click", () => {
+    prevSlide();
+    startAutoSlide();
+  });
+}
 
-  function startAutoPlay() {
-    interval = setInterval(nextSlide, 4000); // 4 detik sekali
-  }
+if (nextBtn) {
+  nextBtn.addEventListener("click", () => {
+    nextSlide();
+    startAutoSlide();
+  });
+}
 
-  function resetAutoPlay() {
-    clearInterval(interval);
-    startAutoPlay();
-  }
-
-  // event tombol navigasi
-  if (nextBtn && prevBtn) {
-    nextBtn.addEventListener("click", () => {
-      nextSlide();
-      resetAutoPlay();
+// Klik pada dot navigasi
+if (dots.length > 0) {
+  dots.forEach((dot, i) => {
+    dot.addEventListener("click", () => {
+      showSlide(i);
+      startAutoSlide();
     });
+  });
+}
 
-    prevBtn.addEventListener("click", () => {
-      prevSlide();
-      resetAutoPlay();
-    });
-  }
+// Tampilkan slide pertama dan mulai autoplay
+if (slides.length > 0) {
+  showSlide(currentSlide);
+  startAutoSlide();
+}
 
-  // mulai autoplay
-  if (slides.length > 0) {
-    startAutoPlay();
-  }
+/* ==========================BERITA 3 KOLOM*/
+const newsContainer = document.querySelector(".news-columns");
+document.querySelector(".news-nav.left").addEventListener("click", () => {
+  newsContainer.scrollBy({ left: -320, behavior: "smooth" });
+});
+document.querySelector(".news-nav.right").addEventListener("click", () => {
+  newsContainer.scrollBy({ left: 320, behavior: "smooth" });
 });
 
+/* ==========================
+   3. (Opsional) Future Script
+   ==========================
+   Kalau nanti ada fitur tambahan
+   seperti navigasi berita, donasi,
+   iklan scroll, dll → taruh di sini
+   biar tidak campur aduk.
+*/
