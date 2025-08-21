@@ -63,10 +63,12 @@ body {
   border-bottom: 1px solid #ddd;
 }
 
+/* Atur logo default */
 .topbar .brand img {
   height: 70px;
+  max-width: 100%;
+  object-fit: contain;
 }
-
 /* ====== SEARCH BAR ====== */
 .topbar .search {
   padding-right: 20px;
@@ -639,5 +641,15 @@ a:hover {
 @media (max-width: 768px) {
   .news-card {
     flex: 0 0 100%;
+  }
+}
+/* Jika layar kecil, perkecil logo */
+@media (max-width: 768px) {
+  .topbar .brand img {
+    height: 40px; /* lebih kecil di HP */
+  }
+
+  .search-bar input {
+    width: 120px; /* biar tidak terlalu panjang */
   }
 }
