@@ -4,19 +4,49 @@
    ========================== */
 
 /* ==========================
-   1. Toggle Menu Mobile
+   1. GESER MENU
    ========================== */
-const menuToggle = document.getElementById("menu-toggle"); // tombol ☰
-const mobileMenu = document.getElementById("menu"); // navigasi utama
 
-if (menuToggle && mobileMenu) {
-  menuToggle.addEventListener("click", function () {
-    mobileMenu.classList.toggle("active");
-    // saat tombol diklik, tambahkan/hilangkan class "active"
-    // pastikan di CSS ada aturan .active { display:block; } untuk menu mobile
+const scroller = document.getElementById("tabScroller");
+const btnLeft = document.getElementById("btnLeft");
+const btnRight = document.getElementById("btnRight");
+
+if (scroller && btnLeft && btnRight) {
+  const step = 200; // jarak geser per klik
+
+  btnLeft.addEventListener("click", () => {
+    scroller.scrollBy({ left: -step, behavior: "smooth" });
   });
+  btnRight.addEventListener("click", () => {
+    scroller.scrollBy({ left: step, behavior: "smooth" });
+  });
+
+  function updateNavButtons() {
+    const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+    btnLeft.disabled = scroller.scrollLeft <= 0;
+    btnRight.disabled = scroller.scrollLeft >= maxScroll - 1;
+  }
+
+  scroller.addEventListener("scroll", updateNavButtons, { passive: true });
+  window.addEventListener("resize", updateNavButtons);
+  updateNavButtons();
 }
 
+/* ==========================
+   IKLAN POPUP DIATAS HALAMAN WEBSITE
+   ========================== */
+const overlay = document.getElementById("popupOverlay");
+const closeBtn = document.getElementById("closeBtn");
+
+closeBtn.addEventListener("click", () => {
+  overlay.style.display = "none";
+});
+
+overlay.addEventListener("click", (e) => {
+  if (e.target === overlay) {
+    overlay.style.display = "none";
+  }
+});
 /* ==========================
    2. Slider Headline Otomatis
    ========================== */
