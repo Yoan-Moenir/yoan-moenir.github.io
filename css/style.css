@@ -65,36 +65,58 @@ body {
 
 /* Atur logo default */
 .topbar .brand img {
-  
-  max-height: 70px;  /* batas maksimal tinggi logo */
-  width: auto;       /* biar rasio asli */
+  max-height: 70px; /* batas maksimal tinggi logo */
+  width: auto; /* biar rasio asli */
   height: auto;
 }
 
 /* ====== SEARCH BAR ====== */
-.topbar .search {
-  padding-right: 20px;
+/* posisi search wrapper */
+.search-wrapper {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  position: relative;
 }
 
-.topbar .search input {
-  padding: 6px 10px;
+/* kotak search default: hidden */
+.search-box {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 5px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* input kecil rapi */
+.search-box input {
+  width: 160px;
+  padding: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-.topbar .search button {
-  padding: 6px 12px;
+/* tombol cari */
+.search-box .btn-cari {
+  background: #ff4d4d;
   border: none;
-  background: #f44336;
   color: #fff;
+  padding: 5px 10px;
+  margin-left: 5px;
   border-radius: 4px;
   cursor: pointer;
 }
 
-.topbar .search button:hover {
-  background: #d32f2f;
+/* icon kaca pembesar */
+.search-toggle {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 /* ====== MENU HORIZONTAL ====== */
@@ -645,34 +667,23 @@ a:hover {
     flex: 0 0 100%;
   }
 }
-/* Responsive untuk layar kecil */
-@media (max-width: 600px) {
-  .topbar {
-    display: flex;
-    flex-direction: row; /* sejajar */
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px; /* jarak antar logo & search */
-    padding: 5px 10px;
+/* khusus layar besar → langsung tampil kotak */
+@media (min-width: 768px) {
+  .search-box {
+    display: flex !important;
+    position: static;
+    margin: 0;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    padding: 0;
   }
 
-  .topbar .brand img {
-   
-    max-height: 45px; /* logo lebih kecil di hp */
-  }
-}
-
-  .topbar .search-box {
-    flex: 1; /* search isi sisa ruang */
-    display: flex;
+  .search-box input {
+    width: 200px;
   }
 
-  .topbar .search-box input[type="text"] {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .topbar .search-box button {
-    flex-shrink: 0;
+  .search-toggle {
+    display: none;
   }
 }
