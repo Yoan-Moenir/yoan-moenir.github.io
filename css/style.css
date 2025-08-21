@@ -72,51 +72,32 @@ body {
 
 /* ====== SEARCH BAR ====== */
 /* posisi search wrapper */
-.search-wrapper {
+.search-container {
+  position: relative;
   display: flex;
   align-items: center;
-  position: relative;
 }
 
-/* kotak search default: hidden */
-.search-box {
-  display: none;
-  position: absolute;
-  right: 0;
-  top: 100%;
-  margin-top: 5px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 5px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-
-/* input kecil rapi */
-.search-box input {
-  width: 160px;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-/* tombol cari */
-.search-box .btn-cari {
-  background: #ff4d4d;
-  border: none;
-  color: #fff;
-  padding: 5px 10px;
-  margin-left: 5px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-/* icon kaca pembesar */
-.search-toggle {
+.search-icon {
   background: none;
   border: none;
   font-size: 20px;
   cursor: pointer;
+}
+
+.search-input {
+  width: 0;
+  opacity: 0;
+  transition: width 0.3s ease, opacity 0.3s ease;
+  padding: 5px 10px;
+  margin-left: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-container.active .search-input {
+  width: 160px; /* bisa disesuaikan */
+  opacity: 1;
 }
 
 /* ====== MENU HORIZONTAL ====== */
