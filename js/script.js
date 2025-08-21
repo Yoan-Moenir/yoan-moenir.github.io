@@ -145,6 +145,18 @@ document.querySelector(".news-nav.right").addEventListener("click", () => {
 });
 
 /* ==========================
+    RESPONSIVE SEARCH BAR TOGGLE
+   ========================== */
+const searchToggle = document.getElementById("search-toggle");
+const searchBox = document.getElementById("search-box");
+
+if (searchToggle && searchBox) {
+  searchToggle.addEventListener("click", () => {
+    searchBox.style.display =
+      searchBox.style.display === "block" ? "none" : "block";
+  });
+}
+/* ==========================
    3. (Opsional) Future Script
    ==========================
    Kalau nanti ada fitur tambahan
