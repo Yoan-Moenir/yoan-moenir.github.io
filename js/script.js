@@ -147,12 +147,15 @@ document.querySelector(".news-nav.right").addEventListener("click", () => {
 /* ==========================
     RESPONSIVE SEARCH BAR TOGGLE
    ========================== */
-const searchToggle = document.getElementById("searchToggle");
-const searchContainer = document.querySelector(".search-container");
+const searchToggle = document.getElementById("search-toggle");
+const searchBox = document.getElementById("search-box");
 
-searchToggle.addEventListener("click", () => {
-  searchContainer.classList.toggle("active");
-});
+if (searchToggle && searchBox) {
+  searchToggle.addEventListener("click", () => {
+    searchBox.style.display =
+      searchBox.style.display === "block" ? "none" : "block";
+  });
+}
 /* ==========================
    3. (Opsional) Future Script
    ==========================
