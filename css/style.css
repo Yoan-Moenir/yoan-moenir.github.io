@@ -65,10 +65,12 @@ body {
 
 /* Atur logo default */
 .topbar .brand img {
-  height: 70px;
-  max-width: 100%;
-  object-fit: contain;
+  
+  max-height: 70px;  /* batas maksimal tinggi logo */
+  width: auto;       /* biar rasio asli */
+  height: auto;
 }
+
 /* ====== SEARCH BAR ====== */
 .topbar .search {
   padding-right: 20px;
@@ -643,13 +645,34 @@ a:hover {
     flex: 0 0 100%;
   }
 }
-/* Jika layar kecil, perkecil logo */
-@media (max-width: 768px) {
-  .topbar .brand img {
-    height: 40px; /* lebih kecil di HP */
+/* Responsive untuk layar kecil */
+@media (max-width: 600px) {
+  .topbar {
+    display: flex;
+    flex-direction: row; /* sejajar */
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px; /* jarak antar logo & search */
+    padding: 5px 10px;
   }
 
-  .search-bar input {
-    width: 120px; /* biar tidak terlalu panjang */
+  .topbar .brand img {
+   
+    max-height: 45px; /* logo lebih kecil di hp */
+  }
+}
+
+  .topbar .search-box {
+    flex: 1; /* search isi sisa ruang */
+    display: flex;
+  }
+
+  .topbar .search-box input[type="text"] {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .topbar .search-box button {
+    flex-shrink: 0;
   }
 }
