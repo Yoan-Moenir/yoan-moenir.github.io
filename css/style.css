@@ -81,41 +81,29 @@ body {
 /* kotak search default: hidden */
 .search-box {
   display: none;
-  position: absolute;
-  right: 0;
-  top: 100%;
-  margin-top: 5px;
+  width: 100%; /* penuh lebar layar */
+  margin-top: 10px;
   background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 5px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  border-top: 1px solid #ddd;
+  padding: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* input kecil rapi */
 .search-box input {
-  width: 160px;
-  padding: 5px;
+  width: 75%; /* biar input lebih lebar */
+  padding: 6px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-/* tombol cari */
 .search-box .btn-cari {
+  width: 20%; /* tombol tetap kecil */
+  padding: 6px;
+  margin-left: 5px;
   background: #ff4d4d;
   border: none;
   color: #fff;
-  padding: 5px 10px;
-  margin-left: 5px;
   border-radius: 4px;
-  cursor: pointer;
-}
-
-/* icon kaca pembesar */
-.search-toggle {
-  background: none;
-  border: none;
-  font-size: 20px;
   cursor: pointer;
 }
 
@@ -667,11 +655,10 @@ a:hover {
     flex: 0 0 100%;
   }
 }
-/* khusus layar besar → langsung tampil kotak */
 @media (min-width: 768px) {
   .search-box {
     display: flex !important;
-    position: static;
+    width: auto;
     margin: 0;
     box-shadow: none;
     border: none;
