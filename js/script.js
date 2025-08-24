@@ -152,8 +152,11 @@ const searchBox = document.getElementById("search-box");
 
 if (searchToggle && searchBox) {
   searchToggle.addEventListener("click", () => {
-    searchBox.style.display =
-      searchBox.style.display === "block" ? "none" : "block";
+    if (searchBox.style.display === "flex") {
+      searchBox.style.display = "none";
+    } else {
+      searchBox.style.display = "flex"; // tampil lebih rapi
+    }
   });
 }
 /* ==========================
