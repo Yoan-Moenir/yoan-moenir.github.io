@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cari Berita</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: rgba(0,0,0,0.6);
+    }
+    .search-overlay {
+      background: #fff;
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .search-overlay h2 {
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .search-overlay input {
+      width: 80%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .search-overlay button {
+      padding: 10px 15px;
+      background: #ff4d4d;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="search-overlay">
+    <h2>Cari Berita</h2>
+    <form action="hasil_cari.php" method="get">
+      <input type="text" name="q" placeholder="Masukkan kata kunci..." />
+      <button type="submit">Cari</button>
+    </form>
+  </div>
+</body>
+</html>
