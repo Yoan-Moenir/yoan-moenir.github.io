@@ -22,8 +22,38 @@
       </div>
     </header>
 
-    <!-- ====== MENU HORIZONTAL ====== -->
-     <?php include 'menu.php';?>
+    <!-- ====== MENU HORIZONTAL GESER ====== -->
+    <div class="tabbar-wrapper" role="navigation" aria-label="Menu Utama">
+      <div class="tabbar">
+        <button
+          class="nav-btn"
+          id="btnLeft"
+          aria-label="Geser kiri"
+          title="Geser kiri"
+        >
+          ◀
+        </button>
+
+        <div class="tab-scroller" id="tabScroller">
+          <a href="#" class="tab" aria-selected="true">Login | Register</a>
+          <a href="#" class="tab">Keluarga</a>
+          <a href="#" class="tab">Kesehatan</a>
+          <a href="#" class="tab">Keuangan</a>
+          <a href="#" class="tab">Bisnis</a>
+          <a href="#" class="tab">Tentang Kami</a>
+        </div>
+
+        <button
+          class="nav-btn"
+          id="btnRight"
+          aria-label="Geser kanan"
+          title="Geser kanan"
+        >
+          ▶
+        </button>
+      </div>
+    </div>
+
     <!-- ====== MAIN CONTENT ====== -->
     <main class="wrap">
       <!-- LEFT COLUMN -->
@@ -221,3 +251,4 @@
     <script src="js/script.js"></script>
   </body>
 </html>
+
