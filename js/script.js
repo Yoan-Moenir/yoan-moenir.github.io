@@ -6,7 +6,6 @@
 /* ==========================
    1. GESER MENU
    ========================== */
-
 const scroller = document.getElementById("tabScroller");
 const btnLeft = document.getElementById("btnLeft");
 const btnRight = document.getElementById("btnRight");
@@ -33,36 +32,39 @@ if (scroller && btnLeft && btnRight) {
 }
 
 /* ==========================
-   IKLAN POPUP DIATAS HALAMAN WEBSITE
+   3. IKLAN POPUP
    ========================== */
 const overlay = document.getElementById("popupOverlay");
 const closeBtn = document.getElementById("closeBtn");
 
-closeBtn.addEventListener("click", () => {
-  overlay.style.display = "none";
-});
-
-overlay.addEventListener("click", (e) => {
-  if (e.target === overlay) {
+if (overlay && closeBtn) {
+  closeBtn.addEventListener("click", () => {
     overlay.style.display = "none";
-  }
-});
-/* ==========================
-   2. Slider Headline Otomatis
-   ========================== */
+  });
 
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) {
+      overlay.style.display = "none";
+    }
+  });
+}
+
+/* ==========================
+   4. SLIDER HEADLINE OTOMATIS
+   ========================== */
 const slides = document.querySelectorAll(".slide");
-const slidesContainer = document.querySelector(".slides"); // ambil container slides
+const slidesContainer = document.querySelector(".slides");
 const dots = document.querySelectorAll(".dot");
 let currentSlide = 0;
 let slideInterval = null;
 
-// Fungsi tampilkan slide sesuai index (looping biar balik lagi ke awal/akhir)
 function showSlide(index) {
+  if (slides.length === 0) return;
+
   if (index >= slides.length) {
-    index = 0; // kembali ke slide pertama
+    index = 0;
   } else if (index < 0) {
-    index = slides.length - 1; // kalau mundur dari slide pertama, lompat ke terakhir
+    index = slides.length - 1;
   }
 
   slides.forEach((slide, i) => {
@@ -77,23 +79,20 @@ function showSlide(index) {
 
   currentSlide = index;
 }
-// Fungsi pindah ke slide berikutnya
+
 function nextSlide() {
   showSlide(currentSlide + 1);
 }
 
-// Fungsi pindah ke slide sebelumnya
 function prevSlide() {
   showSlide(currentSlide - 1);
 }
 
-// Jalankan autoplay
 function startAutoSlide() {
   stopAutoSlide();
   slideInterval = setInterval(nextSlide, 4000);
 }
 
-// Hentikan autoplay
 function stopAutoSlide() {
   if (slideInterval) {
     clearInterval(slideInterval);
@@ -101,7 +100,6 @@ function stopAutoSlide() {
   }
 }
 
-// Tombol navigasi slider (jika ada)
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 
@@ -119,7 +117,6 @@ if (nextBtn) {
   });
 }
 
-// Klik pada dot navigasi
 if (dots.length > 0) {
   dots.forEach((dot, i) => {
     dot.addEventListener("click", () => {
@@ -129,23 +126,29 @@ if (dots.length > 0) {
   });
 }
 
-// Tampilkan slide pertama dan mulai autoplay
 if (slides.length > 0) {
   showSlide(currentSlide);
   startAutoSlide();
 }
 
-/* ==========================BERITA 3 KOLOM*/
+/* ==========================
+   5. BERITA 3 KOLOM
+   ========================== */
 const newsContainer = document.querySelector(".news-columns");
-document.querySelector(".news-nav.left").addEventListener("click", () => {
-  newsContainer.scrollBy({ left: -320, behavior: "smooth" });
-});
-document.querySelector(".news-nav.right").addEventListener("click", () => {
-  newsContainer.scrollBy({ left: 320, behavior: "smooth" });
-});
+const newsNavLeft = document.querySelector(".news-nav.left");
+const newsNavRight = document.querySelector(".news-nav.right");
+
+if (newsContainer && newsNavLeft && newsNavRight) {
+  newsNavLeft.addEventListener("click", () => {
+    newsContainer.scrollBy({ left: -320, behavior: "smooth" });
+  });
+  newsNavRight.addEventListener("click", () => {
+    newsContainer.scrollBy({ left: 320, behavior: "smooth" });
+  });
+}
 
 /* ==========================
-    RESPONSIVE SEARCH BAR TOGGLE
+   6. RESPONSIVE SEARCH BAR TOGGLE
    ========================== */
 const searchToggle = document.getElementById("search-toggle");
 const searchBox = document.getElementById("search-box");
@@ -155,15 +158,13 @@ if (searchToggle && searchBox) {
     if (searchBox.style.display === "flex") {
       searchBox.style.display = "none";
     } else {
-      searchBox.style.display = "flex"; // tampil lebih rapi
+      searchBox.style.display = "flex";
     }
   });
 }
+
 /* ==========================
-   3. (Opsional) Future Script
+   7. FUTURE SCRIPT
    ==========================
-   Kalau nanti ada fitur tambahan
-   seperti navigasi berita, donasi,
-   iklan scroll, dll → taruh di sini
-   biar tidak campur aduk.
-*/
+   Tambahin fitur lain di sini
+   ========================== */
