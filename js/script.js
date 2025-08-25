@@ -1,170 +1,676 @@
-/* ==========================
-   SCRIPT.JS
-   Semua interaksi halaman
-   ========================== */
+/* ====== RESET ====== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-/* ==========================
-   1. GESER MENU
-   ========================== */
-const scroller = document.getElementById("tabScroller");
-const btnLeft = document.getElementById("btnLeft");
-const btnRight = document.getElementById("btnRight");
+body {
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+  background: #eeeaea;
+  color: #0c0c0c;
+}
 
-if (scroller && btnLeft && btnRight) {
-  const step = 200; // jarak geser per klik
+/* ====== GAMBAR MELAYANG DI ATAS WEBSITE ====== */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.popup {
+  position: relative;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 90%;
+  max-height: 90%;
+}
+.popup img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.close-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: red;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  cursor: pointer;
+}
 
-  btnLeft.addEventListener("click", () => {
-    scroller.scrollBy({ left: -step, behavior: "smooth" });
-  });
-  btnRight.addEventListener("click", () => {
-    scroller.scrollBy({ left: step, behavior: "smooth" });
-  });
+/* ====== HEADER ====== */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  padding-left: 50px; /* geser ke kanan */
+  background: #ffffff;
+  border-bottom: 1px solid #ddd;
+}
 
-  function updateNavButtons() {
-    const maxScroll = scroller.scrollWidth - scroller.clientWidth;
-    btnLeft.disabled = scroller.scrollLeft <= 0;
-    btnRight.disabled = scroller.scrollLeft >= maxScroll - 1;
+/* Atur logo default */
+.topbar .brand img {
+  max-height: 70px; /* batas maksimal tinggi logo */
+  width: auto; /* biar rasio asli */
+  height: auto;
+}
+
+/* ====== SEARCH BAR ====== */
+/* posisi search wrapper */
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* kotak search default: hidden */
+.search-box {
+  display: none;
+  width: 100%; /* penuh lebar layar */
+  margin-top: 10px;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  padding: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-box input {
+  width: 75%; /* biar input lebih lebar */
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-box .btn-cari {
+  width: 20%; /* tombol tetap kecil */
+  padding: 6px;
+  margin-left: 5px;
+  background: #ff4d4d;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* ====== MENU HORIZONTAL ====== */
+.tabbar-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #16a5c9;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+/* scroller */
+.tab-scroller {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  flex: 1 1 auto;
+}
+.tab-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+/* tab item */
+.tab {
+  flex: 0 0 auto;
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  color: #1d1c1c;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.tab:hover {
+  background: #0d94b5;
+  color: #fff;
+}
+.tab[aria-selected="true"] {
+  color: #fff;
+  background: #0195f8;
+}
+
+/* tombol panah */
+.nav-btn {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  background: #fff;
+  cursor: pointer;
+}
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* ====== LAYOUT ====== */
+.wrap {
+  display: flex;
+  max-width: 1200px;
+  margin: 20px auto;
+  gap: 10px;
+  padding: 0 10px;
+}
+
+.left-column {
+  flex: 3;
+}
+
+.right-column {
+  flex: 1.2;
+}
+
+/* ====== SLIDER ====== */
+.slider {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+/* ubah: jangan flex, biar fade bisa jalan */
+.slides {
+  position: relative;
+  width: 100%;
+  height: 400px; /* samakan dengan tinggi gambar */
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.slide img {
+  width: 100%;
+  height: 400px; /* seragam tingginya */
+  object-fit: cover; /* isi penuh, proporsional */
+  display: block;
+}
+
+.caption {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.caption .kategory {
+  font-size: 12px;
+  font-weight: bold;
+  color: #ffeb3b;
+}
+
+/* ====== Dots navigasi ====== */
+.dots {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  z-index: 10;
+}
+
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-left: 6px;
+  background-color: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dot.active {
+  background-color: #ff6600;
+}
+
+/* ====== BERITA LIST ====== */
+.news-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.news-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ====== SIDEBAR TRENDING ====== */
+.trending {
+  margin-bottom: 20px;
+}
+
+.trending .side-head {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.news-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+
+  background: #fff; /* warna kotak */
+  border: 1px solid #ddd; /* garis pinggir tipis */
+  border-radius: 8px; /* sudut membulat */
+  padding: 10px; /* ruang dalam */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* efek bayangan */
+}
+
+.news-item img {
+  width: 100%;
+  height: 80px; /* kecil, seragam */
+  object-fit: cover;
+  border-radius: 3px;
+  display: block;
+}
+
+.news-item .cat {
+  font-size: 12px;
+  font-weight: bold;
+  color: #f44336;
+}
+
+.news-item .title {
+  font-size: 14px;
+}
+
+/* ====== IKLAN & INVITE ====== */
+.ads .ad-box {
+  background: #ddd;
+  height: 100px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.member-invite {
+  background: #84e1f8;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.member-invite h3 {
+  margin-bottom: 10px;
+}
+
+.btn-daftar {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: #056e88;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.btn-daftar:hover {
+  background: #d32f2f;
+}
+
+/* ====== KOTAK GAMBAR ====== */
+.kotak {
+  width: 240px;
+  height: 150px;
+  border: 1px solid #ccc;
+  overflow: hidden; /* supaya gambar tidak keluar kotak */
+}
+
+.kotak img {
+  width: 100%;
+  height: auto; /* jaga proporsional */
+}
+/* ====== NAVIGASI BERITA 3 KOLOM (KIRI KANAN) ====== */
+.news-columns-wrapper {
+  position: relative;
+}
+
+.news-columns {
+  display: flex;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  gap: 10px;
+}
+.news-columns img {
+  width: 100%;
+  height: 180px; /* atur sesuai kotak */
+  object-fit: cover;
+  border-radius: 5px;
+  display: block;
+}
+.news-card {
+  flex: 0 0 calc(100% / 3 - 10px); /* 3 berita per tampilan */
+  background: lab(98.27% 0.01 -0.01);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.news-nav {
+  position: absolute;
+  top: 60%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 18px;
+  z-index: 10;
+}
+
+.news-nav.left {
+  left: -5px;
+  padding: 8px 16px;
+  background: #ff9800;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.news-nav.right {
+  right: -3px;
+  padding: 8px 16px;
+  background: #ff9800;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* ====== DETAIL BERITA ====== */
+.news-detail {
+  max-width: 800px;
+  margin: 5px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Arial", sans-serif;
+}
+
+.news-image {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.news-title {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.news-caption {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.news-content p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: justify;
+}
+
+/* ====== MENGHILANGKAN/ MERUBAH WARNA DAN GARIS BAWAH PADA LINK  ====== */
+a {
+  text-decoration: none; /* hilangkan garis bawah */
+  color: rgb(248, 246, 246); /* ubah warna link jadi merah */
+}
+a:hover {
+  text-decoration: none; /* kalau mau muncul garis bawah lagi saat hover */
+}
+
+/* ====== SUPPORT ====== */
+/* Kotak support: garis lembut + bayangan halus */
+.support-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  border: 1px solid #e5e7eb; /* garis lembut */
+  border-radius: 14px; /* sudut membulat */
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  max-width: 720px;
+  margin: 16px auto;
+}
+
+/* Teks */
+.support-box p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #111827;
+}
+
+/* Tombol support */
+.btn-support {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 999px; /* kapsul */
+  font-weight: 600;
+  text-decoration: none;
+  background: linear-gradient(180deg, #16a34a, #15803d);
+  color: #fff;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-support:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(22, 163, 74, 0.25);
+}
+
+.btn-support:active {
+  transform: translateY(0);
+  opacity: 0.9;
+}
+
+.btn-support:focus-visible {
+  outline: 3px solid #86efac;
+  outline-offset: 2px;
+}
+
+/*-- FOOTER --*/
+.site-footer {
+  background: #111827; /* warna gelap elegan */
+  color: #f3f4f6; /* teks abu muda */
+  padding: 40px 20px 20px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-about h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #089afc; /* hijau positif */
+}
+
+.footer-links h4,
+.footer-social h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #f9fafb;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 8px;
+}
+
+.footer-links ul li a,
+.footer-social a {
+  color: #d1d5db;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links ul li a:hover,
+.footer-social a:hover {
+  color: #10b981; /* hover jadi hijau */
+}
+
+.footer-bottom {
+  border-top: 1px solid #374151;
+  margin-top: 20px;
+  padding-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  color: #9ca3af;
+}
+/* Responsif untuk HP */
+@media (max-width: 600px) {
+  .support-box {
+    flex-direction: column;
+    text-align: center;
+  }
+  .btn-support {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .wrap {
+    flex-direction: column;
   }
 
-  scroller.addEventListener("scroll", updateNavButtons, { passive: true });
-  window.addEventListener("resize", updateNavButtons);
-  updateNavButtons();
-}
-
-/* ==========================
-   3. IKLAN POPUP
-   ========================== */
-const overlay = document.getElementById("popupOverlay");
-const closeBtn = document.getElementById("closeBtn");
-
-if (overlay && closeBtn) {
-  closeBtn.addEventListener("click", () => {
-    overlay.style.display = "none";
-  });
-
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) {
-      overlay.style.display = "none";
-    }
-  });
-}
-
-/* ==========================
-   4. SLIDER HEADLINE OTOMATIS
-   ========================== */
-const slides = document.querySelectorAll(".slide");
-const slidesContainer = document.querySelector(".slides");
-const dots = document.querySelectorAll(".dot");
-let currentSlide = 0;
-let slideInterval = null;
-
-function showSlide(index) {
-  if (slides.length === 0) return;
-
-  if (index >= slides.length) {
-    index = 0;
-  } else if (index < 0) {
-    index = slides.length - 1;
+  nav#menu {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 20px; /* lebih kecil di mobile */
   }
 
-  slides.forEach((slide, i) => {
-    slide.classList.toggle("active", i === index);
-  });
-
-  if (dots.length > 0) {
-    dots.forEach((dot, i) => {
-      dot.classList.toggle("active", i === index);
-    });
+  .menu-toggle {
+    display: block;
   }
 
-  currentSlide = index;
-}
+  .slides {
+    height: 250px; /* slider lebih kecil */
+  }
 
-function nextSlide() {
-  showSlide(currentSlide + 1);
-}
+  .slide img {
+    height: 250px;
+  }
 
-function prevSlide() {
-  showSlide(currentSlide - 1);
-}
-
-function startAutoSlide() {
-  stopAutoSlide();
-  slideInterval = setInterval(nextSlide, 4000);
-}
-
-function stopAutoSlide() {
-  if (slideInterval) {
-    clearInterval(slideInterval);
-    slideInterval = null;
+  .news-columns.slider-mode .news-card {
+    flex: 0 0 100%; /* tampil 1 per 1 di mobile */
   }
 }
 
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-
-if (prevBtn) {
-  prevBtn.addEventListener("click", () => {
-    prevSlide();
-    startAutoSlide();
-  });
+/* ====== AGAR LOGO MP RESPONSIVE RAPAT KIRI ====== */
+@media (max-width: 768px) {
+  .topbar {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 
-if (nextBtn) {
-  nextBtn.addEventListener("click", () => {
-    nextSlide();
-    startAutoSlide();
-  });
+/* ====== SLIDER BERITA ATAS RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .slides {
+    height: 250px;
+  }
+  .slide img {
+    height: 250px;
+  }
 }
-
-if (dots.length > 0) {
-  dots.forEach((dot, i) => {
-    dot.addEventListener("click", () => {
-      showSlide(i);
-      startAutoSlide();
-    });
-  });
+/* ====== RESPONSIVE BERITA 3 KOLOM, DI HP JADI 1 KOLOM ====== */
+@media (max-width: 768px) {
+  .news-card {
+    flex: 0 0 100%;
+  }
 }
+@media (min-width: 768px) {
+  .search-box {
+    display: flex !important;
+    width: auto;
+    margin: 0;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    padding: 0;
+  }
 
-if (slides.length > 0) {
-  showSlide(currentSlide);
-  startAutoSlide();
+  .search-box input {
+    width: 200px;
+  }
+
+  .search-toggle {
+    display: none;
+  }
 }
-
-/* ==========================
-   5. BERITA 3 KOLOM
-   ========================== */
-const newsContainer = document.querySelector(".news-columns");
-const newsNavLeft = document.querySelector(".news-nav.left");
-const newsNavRight = document.querySelector(".news-nav.right");
-
-if (newsContainer && newsNavLeft && newsNavRight) {
-  newsNavLeft.addEventListener("click", () => {
-    newsContainer.scrollBy({ left: -320, behavior: "smooth" });
-  });
-  newsNavRight.addEventListener("click", () => {
-    newsContainer.scrollBy({ left: 320, behavior: "smooth" });
-  });
-}
-
-/* ==========================
-   6. RESPONSIVE SEARCH BAR TOGGLE
-   ========================== */
-const searchToggle = document.getElementById("search-toggle");
-const searchBox = document.getElementById("search-box");
-
-if (searchToggle && searchBox) {
-  searchToggle.addEventListener("click", () => {
-    if (searchBox.style.display === "flex") {
-      searchBox.style.display = "none";
-    } else {
-      searchBox.style.display = "flex";
-    }
-  });
-}
-
-/* ==========================
-   7. FUTURE SCRIPT
-   ==========================
-   Tambahin fitur lain di sini
-   ========================== */
